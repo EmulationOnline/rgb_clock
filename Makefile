@@ -1,10 +1,16 @@
 all: rgb_clock
 
-.PHONY: deps
-deps:
+.PHONY: macdeps debdeps
+
+macdeps:
 	# mac deps
 	brew install pkg-config
 	brew install sdl2
 
-rgb_clock: rgb_clock.cc deps
+debdeps:
+	# debian/ubuntu deps
+	sudo apt install libsdl2-dev pkg-config
+	
+
+rgb_clock: rgb_clock.cc 
 	$(CXX) `pkg-config --libs --cflags sdl2` rgb_clock.cc -o rgb_clock
